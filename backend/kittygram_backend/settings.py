@@ -1,3 +1,4 @@
+# flake8: noqa
 import os
 from pathlib import Path
 
@@ -5,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -55,6 +56,8 @@ WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
 DATABASES = {
     'default': {
+        # Меняем настройку Django: теперь для работы будет использоваться
+        # бэкенд postgresql
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'django'),
         'USER': os.getenv('POSTGRES_USER', 'django'),
