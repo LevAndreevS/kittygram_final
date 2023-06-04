@@ -1,5 +1,7 @@
 FROM python:3.9-slim
 
+RUN apt install -y make
+
 WORKDIR /app
 
 RUN pip install gunicorn==20.1.0
