@@ -1,6 +1,6 @@
 FROM python:3.9-slim
 
-RUN apt install -y make
+RUN apt-get install make -y
 
 WORKDIR /app
 
