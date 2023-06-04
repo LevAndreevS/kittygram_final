@@ -28,7 +28,7 @@ services:
   gateway:
     build: ./nginx/
     ports:
-      - 9000:80
+      - ${PORT_DOCKER}
     volumes:
       - static:/staticfiles
       - media:/app/media/
