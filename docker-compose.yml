@@ -11,6 +11,12 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 3s
+        max_attempts: 5
+        window: 60s
   backend:
     build: ./backend/
     env_file: .env
@@ -19,12 +25,24 @@ services:
     volumes:
       - static:/backend_static
       - media:/app/media/
+    deploy:
+      restart_policy:
+        condition: any
+        delay: 3s
+        max_attempts: 5
+        window: 60s
   frontend:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        max_attempts: 5
+        window: 60s
   gateway:
     build: ./nginx/
     ports:
@@ -32,3 +50,9 @@ services:
     volumes:
       - static:/staticfiles
       - media:/app/media/
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        max_attempts: 5
+        window: 60s
