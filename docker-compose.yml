@@ -11,7 +11,7 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgresql/data
-    restart: always
+    restart: on-failure
   backend:
     build: ./backend/
     env_file: .env
@@ -20,7 +20,7 @@ services:
     volumes:
       - static:/backend_static
       - media:/app/media/
-    restart: always
+    restart: on-failure
   frontend:
     env_file: .env
     build: ./frontend/
